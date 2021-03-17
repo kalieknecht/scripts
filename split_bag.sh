@@ -26,3 +26,6 @@ rosbag filter data.bag part2.bag "t.secs<=starttime+snip_length*2 and t.secs>=st
 rosbag filter data.bag part3.bag "t.secs<=starttime+snip_length*3 and t.secs>=starttime+snip_length*2"
 rosbag filter data.bag part4.bag "t.secs<=starttime+snip_length*4 and t.secs>=starttime+snip_length*3"
 rosbag filter data.bag part5.bag "t.secs>=starttime+snip_length*4"
+
+# add some check with end_time to figure out if on last iteration or not
+# put part1 and partN outside of for loop and iterate thru middle slices
