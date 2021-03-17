@@ -1,5 +1,6 @@
 #!/bin/sh
 # USAGE: ./split_bag.sh
+# goal usage: ./split_bag.sh bagname.bag num_snips
 # in directory of desired file, called data.bag
 # to do: make name of bag  file input, and edit data.bag calls below
 num_snips=5 # number of files to create  
