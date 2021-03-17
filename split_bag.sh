@@ -1,5 +1,5 @@
 #!/bin/sh
-# USAGE: ./split_bag.sh 
+# USAGE: ./split_bag.sh
 # in directory of desired file, called data.bag
 # to do: make name of bag  file input, and edit data.bag calls below
 num_snips=5 # number of files to create  
@@ -13,3 +13,16 @@ endtime="$(rosbag info -y -k end data.bag | tee /dev/stderr)" # end time
 trunc_length=$(echo $length | cut -d "." -f 1) #truncate length for easier division
 snip_length=$((trunc_length / num_snips )) # length of each snippet
 
+# for loop to filter bag  for each snip
+# for i in {0..num_snips-1} check syntax
+#do
+#    rosbag filter data.bag parti.bag "t.secs>="
+#done
+
+# format given 5 iterations
+# not sure about formatting or how to give  variable for t.secs for filter command
+rosbag filter data.bag part1.bag "t.secs<=starttime+snip_length"
+rosbag filter data.bag part2.bag "t.secs<=starttime+snip_length*2 and t.secs>=starttime+snip_length"
+rosbag filter data.bag part3.bag "t.secs<=starttime+snip_length*3 and t.secs>=starttime+snip_length*2"
+rosbag filter data.bag part4.bag "t.secs<=starttime+snip_length*4 and t.secs>=starttime+snip_length*3"
+rosbag filter data.bag part5.bag "t.secs>=starttime+snip_length*4"
